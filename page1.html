@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <SCRIPT language='javascript' src='./soapclient.js'></SCRIPT>
+    <SCRIPT language=javascript>
+
+        var url = "https://servicos.saude.gov.br/cnes/EstabelecimentoSaudeService/v1r0?wsdl";
+        
+        function GetVersions()
+        {
+        
+           var method = "GetVersions"; // Method name to Call
+        
+           var pl = new SOAPClientParameters();
+           pl.add("username", 'CNES.PUBLICO');
+           pl.add("password", 'cnes#2015public');
+           SOAPClient.invoke(url, method, pl, true, GetVersions_callBack);
+        }
+        
+        /* WebService CallBack*/
+        function GetVersions_callBack(r,soapResponse)
+        {
+        
+           if(soapResponse.xml)    // IE
+           alert(soapResponse.xml);
+           else    // MOZ
+           alert((new XMLSerializer()).serializeToString(soapResponse)); //print SOAP Response
+                        
+           
+        
+        } 
+        
+        </SCRIPT>
+</head>
+
+<body>
+    <input type="button" onclick="GetVersions()" value="Click"/>
+</body>
+</html>

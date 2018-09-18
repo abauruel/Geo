@@ -1,0 +1,3 @@
+rootProject.name = 'Geo'
+
+include ':app'
